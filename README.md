@@ -138,9 +138,9 @@ TCIA_SegPC_dataset
 </pre>
 Sample images in train/x:<br>
 <img src="./asset/train_x.png" width="720" height="auto"><br>
-Sample images in train/y:<br>
+Sample masks in train/y:<br>
 <img src="./asset/train_y.png" width="720" height="auto"><br>
-<br>
+
 Each <b>x</b> folder of the dataset contains the ordinary image files of Multiple Myeloma Plasma Cells,
 and <b>y</b> folder contains the mask image file to identify each Cell of the ordinary image files.
   Both the image size of all files in <b>x</b> and <b>y</b> is 2560x1920, which is apparently too large to use 
