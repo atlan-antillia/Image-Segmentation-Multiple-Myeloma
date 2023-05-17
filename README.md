@@ -144,7 +144,7 @@ for our TensoflowUNet Model.<br>
 <h3>
 2.3.2. Generate MultipleMyelomaImage Dataset
 </h3>
- We have create Python script <a href="./MultipleMyelomaImageDatasetGenerator.py">MultipleMyelomaImageDatasetGenerator.py</a> to create images and masks dataset which may be used to train our
+ We have created Python script <a href="./MultipleMyelomaImageDatasetGenerator.py">MultipleMyelomaImageDatasetGenerator.py</a> to create images and masks dataset which may be used to train our
  TensorflowUNet model.<br>
  This script will perform following image processing.<br>
  <pre>
