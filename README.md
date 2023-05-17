@@ -2,8 +2,9 @@
 Image-Segmentation-Multiple-Myeloma (Updated: 2023/05/18)
 </h2>
 This is an experimental project to detect <b>Multiple-Myeloma</b> based on 
-Microscopic Images of Multiple-Myeloma (TCIA_SegPC_dataset), by using Google Brain AutoML
-<a href="https://github.com/google/automl/tree/master/efficientdet"> EfficientDet.</a><br>
+Microscopic Images of Multiple-Myeloma (TCIA_SegPC_dataset), by using 
+<a href="https://github.com/atlan-antillia/Tensorflow-Slightly-Flexible-UNet">
+Tensorflow-Slightly-Flexible-UNet.</a><br>
 The original dataset used here has been take from the following  web site:<br>
 <b>SegPC-2021-dataset</b><br>
 SegPC-2021: Segmentation of Multiple Myeloma Plasma Cells in Microscopic Images<br>
