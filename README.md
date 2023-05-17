@@ -122,7 +122,7 @@ Please download original <b>Multiple Myeloma Plasma Cells</b> dataset from the f
 SegPC-2021: Segmentation of Multiple Myeloma Plasma Cells in Microscopic Images<br>
 <pre>
 https://www.kaggle.com/datasets/sbilab/segpc2021dataset
-<pre>
+</pre>
 The folder structure of the dataset is the following.<br>
 <pre>
 TCIA_SegPC_dataset
