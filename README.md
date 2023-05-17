@@ -181,7 +181,7 @@ MultipleMyeloma
 <h2>
 3 Train TensorflowUNet Model
 </h2>
- We have trained Brain-Tumor TensorflowUNet Model by using the following
+ We have trained MultipleMyeloma TensorflowUNet Model by using the following
  <b>train_eval_infer.config</b> file. <br>
 Please run the following bat file.<br>
 <pre>
@@ -254,7 +254,7 @@ The val_loss is also very low as shown below from the beginning of the training.
 <h2>
 4 Evaluation
 </h2>
- We have evaluated prediction accuracy of our Pretrained Brain-Tumor Model by using <b>test</b> dataset.
+ We have evaluated prediction accuracy of our Pretrained MultipleMyeloma Model by using <b>test</b> dataset.
 Please run the following bat file.<br>
 <pre>
 >2.evalute.bat
@@ -271,7 +271,7 @@ The evaluation result of this time is the following.<br>
 5 Inference 
 </h2>
 We have also tried to infer the segmented region for <b>mini_test</b> dataset, which is a very small dataset including only ten images extracted from <b>test</b> dataset,
- by using our Pretrained Brain-Tumor Model.<br>
+ by using our Pretrained MultipleMyeloma Model.<br>
 <pre>
 >3.infer.bat
 </pre>
