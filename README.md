@@ -136,7 +136,7 @@ TCIA_SegPC_dataset
     └─y
 </pre>
  We have created <b>MultipleMyeloma</b> dataset from original <b>train</b> and <b>valid</b> dataset of <b>TCIA_SegPC_dataset</b> by using the following Python script.<br>
-<a href="./projects/Multiple-Myeloma/YOLOAnnotationGenerator.py">YOLOAnnotationGenerator</a><br>
+<a href="./MultipleMyelomaImageDatasetGenerator.py">MultipleMyelomaImageDatasetGenerator.py</a><br>
 Each <bx</b> folder of the dataset contains the ordinary image files of Multiple Myeloma Plasma Cells,
   and <b>y</b> folder contains the mask image file to identify each Cell of the ordinary image files.
   Both the image size of all files in <b>x</b> and <b>y</b> is 2560x1920, which is apparently too large to use 
