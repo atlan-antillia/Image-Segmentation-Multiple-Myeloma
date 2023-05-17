@@ -156,11 +156,12 @@ For example, an image file <b>train/x/106.bmp</b> in the above picture has some 
  This script will perform following image processing.<br>
  <pre>
  1 Resize all bmp files in <b>x</b> and <b>y</b> folder to 256x256 square image.
- 2 Create cropped images files corresponding to each segmented region in mask files in <b>y</b> folders.
+ 2 Create clear white-black mask files from the original mask files.
+ 3 Create cropped images files corresponding to each segmented region in mask files in <b>y</b> folders.
 </pre>
 There are some strategies to create cropped area to identity cell region from the original image and some mask files.<br>
 Example:<br>
-<li>White black masks files</li>
+<li>White black masks files created by our generator script above</li>
 <img src="./asset/white_black_mask.png" width="720" height="auto"><br>
 <li>Cropping the rectangular area to the mask region.</li>
 <img src="./asset/rectangle_cropping.png"  width="720" height="auto"><br>
