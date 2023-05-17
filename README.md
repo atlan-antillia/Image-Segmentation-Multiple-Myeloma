@@ -136,15 +136,18 @@ TCIA_SegPC_dataset
     ├─x
     └─y
 </pre>
+Each <b>x</b> folder of the dataset contains the ordinary image files of Multiple Myeloma Plasma Cells,
+and <b>y</b> folder contains the mask image file to identify each Cell of the ordinary image files.
+  Both the image size of all files in <b>x</b> and <b>y</b> is 2560x1920, which is apparently too large to use 
+for our TensoflowUNet Model.<br>
+
 Sample images in train/x:<br>
 <img src="./asset/train_x.png" width="720" height="auto"><br>
 Sample masks in train/y:<br>
 <img src="./asset/train_y.png" width="720" height="auto"><br>
 
-Each <b>x</b> folder of the dataset contains the ordinary image files of Multiple Myeloma Plasma Cells,
-and <b>y</b> folder contains the mask image file to identify each Cell of the ordinary image files.
-  Both the image size of all files in <b>x</b> and <b>y</b> is 2560x1920, which is apparently too large to use 
-for our TensoflowUNet Model.<br>
+For example, an image file <b>train/x/106.bmp</b> in the above picture has some corresponding mask files <b>train/y/106_*.bmp</b>.<br>
+ 
 <h3>
 2.3.2. Generate MultipleMyelomaImage Dataset
 </h3>
