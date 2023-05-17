@@ -135,7 +135,7 @@ TCIA_SegPC_dataset
     ├─x
     └─y
 </pre>
- We have created <b>MultipleMyeloma </b> from original <b>train</b> and <b>valid</b> dataset of <b>TCIA_SegPC_dataset</b> by using the following Python script.<br>
+ We have created <b>MultipleMyeloma</b> dataset from original <b>train</b> and <b>valid</b> dataset of <b>TCIA_SegPC_dataset</b> by using the following Python script.<br>
 <a href="./projects/Multiple-Myeloma/YOLOAnnotationGenerator.py">YOLOAnnotationGenerator</a><br>
 Each <bx</b> folder of the dataset contains the ordinary image files of Multiple Myeloma Plasma Cells,
   and <b>y</b> folder contains the mask image file to identify each Cell of the ordinary image files.
