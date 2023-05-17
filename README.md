@@ -302,7 +302,6 @@ https://www.kaggle.com/datasets/sbilab/segpc2021dataset
 Citation:<br>
 <pre>
 Anubha Gupta, Ritu Gupta, Shiv Gehlot, Shubham Goswami, April 29, 2021, "SegPC-2021: Segmentation of Multiple Myeloma Plasma Cells in Microscopic Images", IEEE Dataport, doi: https://dx.doi.org/10.21227/7np1-2q42.
-
 BibTex
 @data{segpc2021,
 doi = {10.21227/7np1-2q42},
@@ -311,36 +310,28 @@ author = {Anubha Gupta; Ritu Gupta; Shiv Gehlot; Shubham Goswami },
 publisher = {IEEE Dataport},
 title = {SegPC-2021: Segmentation of Multiple Myeloma Plasma Cells in Microscopic Images},
 year = {2021} }
-
 IMPORTANT:
 If you use this dataset, please cite below publications-
-
 1. Anubha Gupta, Rahul Duggal, Shiv Gehlot, Ritu Gupta, Anvit Mangal, Lalit Kumar, Nisarg Thakkar, and Devprakash Satpathy, 
  "GCTI-SN: Geometry-Inspired Chemical and Tissue Invariant Stain Normalization of Microscopic Medical Images," 
  Medical Image Analysis, vol. 65, Oct 2020. DOI: 
  (2020 IF: 11.148)
-
 2. Shiv Gehlot, Anubha Gupta and Ritu Gupta, 
  "EDNFC-Net: Convolutional Neural Network with Nested Feature Concatenation for Nuclei-Instance Segmentation,"
  ICASSP 2020 - 2020 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), 
  Barcelona, Spain, 2020, pp. 1389-1393.
-
 3. Anubha Gupta, Pramit Mallick, Ojaswa Sharma, Ritu Gupta, and Rahul Duggal, 
  "PCSeg: Color model driven probabilistic multiphase level set based tool for plasma cell segmentation in multiple myeloma," 
  PLoS ONE 13(12): e0207908, Dec 2018. DOI: 10.1371/journal.pone.0207908
-
 License
 CC BY-NC-SA 4.0
 </pre>
-
 
 <b>2. Deep Learning Based Approach For MultipleMyeloma Detection</b><br>
 Vyshnav M T, Sowmya V, Gopalakrishnan E A, Sajith Variyar V V, Vijay Krishna Menon, Soman K P<br>
 <pre>
 https://www.researchgate.net/publication/346238471_Deep_Learning_Based_Approach_for_Multiple_Myeloma_Detection
 </pre>
-
-
 <br>
 
 <h2>
