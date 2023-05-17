@@ -136,10 +136,13 @@ TCIA_SegPC_dataset
     ├─x
     └─y
 </pre>
- We have created <b>MultipleMyeloma</b> dataset from original <b>train</b> and <b>valid</b> dataset of <b>TCIA_SegPC_dataset</b> by using the following Python script.<br>
-<a href="./MultipleMyelomaImageDatasetGenerator.py">MultipleMyelomaImageDatasetGenerator.py</a><br>
+Sample images in train/x:<br>
+<img src="./asset/train_x.png" width="720" height="auto"><br>
+Sample images in train/y:<br>
+<img src="./asset/train_y.png" width="720" height="auto"><br>
+<br>
 Each <b>x</b> folder of the dataset contains the ordinary image files of Multiple Myeloma Plasma Cells,
-  and <b>y</b> folder contains the mask image file to identify each Cell of the ordinary image files.
+and <b>y</b> folder contains the mask image file to identify each Cell of the ordinary image files.
   Both the image size of all files in <b>x</b> and <b>y</b> is 2560x1920, which is apparently too large to use 
 for our TensoflowUNet Model.<br>
 <h3>
