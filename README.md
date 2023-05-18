@@ -163,10 +163,24 @@ There are some strategies to create cropped area to identity cell region from th
 Example:<br>
 <li>White black mask files created by the generator script above</li>
 <img src="./asset/white_black_mask.png" width="720" height="auto"><br>
-<li>Cropping the rectangular area corresponding to the mask region.</li>
+<li>1 Cropping the rectangular area corresponding to the mask region.</li>
 <img src="./asset/rectangle_cropping.png"  width="720" height="auto"><br>
-<li>Cropping the ellipsoidal area corresponding to the mask region.</li>
+<li>2 Cropping the ellipsoidal area corresponding to the mask region.</li>
 <img src="./asset/ellipsoidal_cropping.png"  width="720" height="auto"><br>
+<li>3 Merging mask files to one mask file corresponding to the original image file<br>
+<table>
+<tr>
+<td>
+<img src="./asset/106.jpg" width="256" height="auto">
+</td>
+
+<td>
+<img src="./asset/106_merged_masks.jpg" width="256" height="auto">
+</td>
+
+</tr>
+</table>
+<br>
 At first glance, the second strategy seems to be well fitting to the white ellipsoidal regions of mask files, 
 but we will take the first strategy, because that ordinary Tensorflow CNN Convolution and MaxPooling layers will
 receive the rectangular images as their inputs.<br> 
