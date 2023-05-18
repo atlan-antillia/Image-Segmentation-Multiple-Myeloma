@@ -167,7 +167,12 @@ Example:<br>
 <img src="./asset/rectangle_cropping.png"  width="720" height="auto"><br>
 <li>2 Cropping the ellipsoidal area corresponding to the mask region.</li>
 <img src="./asset/ellipsoidal_cropping.png"  width="720" height="auto"><br>
-<li>3 Merging some mask files into one mask file corresponding to the original image file.<br>
+
+At first glance, the second strategy seems to be well fitting to the white ellipsoidal regions of mask files, 
+but we will take the first strategy, because that ordinary Tensorflow CNN Convolution and MaxPooling layers will
+receive the rectangular images as their inputs.<br> 
+Of course, there are some another approaches, of which is to merge mutilple mask files corresponding to one image 
+into one mask file.<br>
 <table>
 <tr>
 <td>106.jpg</td>
@@ -183,11 +188,6 @@ Example:<br>
 </tr>
 </table>
 <br>
-At first glance, the second strategy seems to be well fitting to the white ellipsoidal regions of mask files, 
-but we will take the first strategy, because that ordinary Tensorflow CNN Convolution and MaxPooling layers will
-receive the rectangular images as their inputs.<br> 
-
-
 <h3>
 2.3.3 Generated MultipleMyeloma dataset.<br>
 </h3>
