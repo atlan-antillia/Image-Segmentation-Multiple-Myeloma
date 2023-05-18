@@ -167,17 +167,19 @@ Example:<br>
 <img src="./asset/rectangle_cropping.png"  width="720" height="auto"><br>
 <li>2 Cropping the ellipsoidal area corresponding to the mask region.</li>
 <img src="./asset/ellipsoidal_cropping.png"  width="720" height="auto"><br>
-<li>3 Merging mask files to one mask file corresponding to the original image file<br>
+<li>3 Merging some mask files into one mask file corresponding to the original image file.<br>
 <table>
+<tr>
+<td>106.jpg</td>
+<td>106_merged_masks.jpg</td>
+</tr>
 <tr>
 <td>
 <img src="./asset/106.jpg" width="128" height="auto">
 </td>
-
 <td>
 <img src="./asset/106_merged_masks.jpg" width="128" height="auto">
 </td>
-
 </tr>
 </table>
 <br>
