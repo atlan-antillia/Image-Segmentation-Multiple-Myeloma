@@ -161,11 +161,11 @@ For example, an image file <b>train/x/106.bmp</b> in the above picture has some 
 </pre>
 There are some strategies to create cropped area to identity cell region from the original image and some mask files.<br>
 Example:<br>
-<li>White black masks files created by our generator script above</li>
+<li>White black mask files created by the generator script above</li>
 <img src="./asset/white_black_mask.png" width="720" height="auto"><br>
-<li>Cropping the rectangular area to the mask region.</li>
+<li>Cropping the rectangular area corresponding to the mask region.</li>
 <img src="./asset/rectangle_cropping.png"  width="720" height="auto"><br>
-<li>Cropping the ellipsoidal area to the mask region.</li>
+<li>Cropping the ellipsoidal area corresponding to the mask region.</li>
 <img src="./asset/ellipsoidal_cropping.png"  width="720" height="auto"><br>
 At first glance, the second strategy seems to be well fitting to the white ellipsoidal regions of mask files, 
 but we will take the first strategy, because that ordinary Tensorflow CNN Convolution and MaxPooling layers will
