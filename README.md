@@ -176,6 +176,28 @@ into one mask file as shown below.<br>
 <table>
 <tr>
 <td>
+106_1.jpg
+</td>
+<td>
+106_2.jpg
+</td>
+<td>
+106_3.jpg
+</td>
+<td>
+106_4.jpg
+</td>
+<td>
+106_5.jpg
+</td>
+<td>
+106_merged.jpg
+</td>
+
+</tr>
+
+<tr>
+<td>
 <img src="./asset/106_1.jpg" width="100" height="auto">
 </td>
 <td>
@@ -190,8 +212,6 @@ into one mask file as shown below.<br>
 <td>
 <img src="./asset/106_5.jpg" width="100" height="auto">
 </td>
-</tr>
-<tr>
 <td>
 <img src="./asset/106_merged_masks.jpg" width="108" height="auto">
 </td>
