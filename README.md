@@ -387,6 +387,11 @@ Vyshnav M T, Sowmya V, Gopalakrishnan E A, Sajith Variyar V V, Vijay Krishna Men
 https://www.researchgate.net/publication/346238471_Deep_Learning_Based_Approach_for_Multiple_Myeloma_Detection
 </pre>
 <br>
+<b>3. EfficientDet-Multiple-Myeloma</b><br>
+Toshiyuki Arai @antillia.com<br>
+<pre>
+https://github.com/sarah-antillia/EfficientDet-Multiple-Myeloma</pre>
+<br>
 
 <h2>
 Appendix
