@@ -170,9 +170,9 @@ Example:<br>
 
 At first glance, the second strategy seems to be well fitting to the white ellipsoidal regions of mask files, 
 but we will take the first strategy, because that ordinary Tensorflow CNN Convolution and MaxPooling layers will
-receive the rectangular images as their inputs.<br> 
-Of course, there are some another approaches, of which is to merge mutilple mask files corresponding to one image 
-into one mask file.<br>
+receive the rectangular images as their inputs.<br><br>
+Of course, there are some another approaches, one of which is to merge mutilple mask files corresponding to one image 
+into one mask file as shown below.<br>
 <table>
 <tr>
 <td>106.jpg</td>
