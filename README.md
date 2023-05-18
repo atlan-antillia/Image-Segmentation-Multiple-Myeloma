@@ -175,15 +175,25 @@ Of course, there are some another approaches, one of which is to merge mutilple 
 into one mask file as shown below.<br>
 <table>
 <tr>
-<td>106.jpg</td>
-<td>106_merged_masks.jpg</td>
+<td>
+<img src="./asset/106_1.jpg" width="100" height="auto">
+</td>
+<td>
+<img src="./asset/106_2.jpg" width="100" height="auto">
+</td>
+<td>
+<img src="./asset/106_3.jpg" width="100" height="auto">
+</td>
+<td>
+<img src="./asset/106_4.jpg" width="100" height="auto">
+</td>
+<td>
+<img src="./asset/106_5.jpg" width="100" height="auto">
+</td>
 </tr>
 <tr>
 <td>
-<img src="./asset/106.jpg" width="128" height="auto">
-</td>
-<td>
-<img src="./asset/106_merged_masks.jpg" width="128" height="auto">
+<img src="./asset/106_merged_masks.jpg" width="108" height="auto">
 </td>
 </tr>
 </table>
