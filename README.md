@@ -171,11 +171,11 @@ Example:<br>
 <table>
 <tr>
 <td>
-<img src="./asset/106.jpg" width="256" height="auto">
+<img src="./asset/106.jpg" width="128" height="auto">
 </td>
 
 <td>
-<img src="./asset/106_merged_masks.jpg" width="256" height="auto">
+<img src="./asset/106_merged_masks.jpg" width="128" height="auto">
 </td>
 
 </tr>
