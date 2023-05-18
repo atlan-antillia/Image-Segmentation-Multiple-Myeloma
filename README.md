@@ -146,7 +146,7 @@ Sample images in train/x:<br>
 Sample masks in train/y:<br>
 <img src="./asset/train_y.png" width="720" height="auto"><br>
 
-For example, an image file <b>train/x/106.bmp</b> in the above picture has some corresponding mask files <b>train/y/106_*.bmp</b>, which contain slightly unreconizable ellipsoidal lightgray mask regions <br>
+For example, an image file <b>train/x/106.bmp</b> in the above picture has some corresponding mask files <b>train/y/106_*.bmp</b>, which contain extremely unreconizable ellipsoidal lightgray mask regions for humans.<br>
  
 <h3>
 2.3.2. Generate MultipleMyelomaImage Dataset
