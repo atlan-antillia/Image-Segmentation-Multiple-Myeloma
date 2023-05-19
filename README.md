@@ -49,7 +49,7 @@ CC BY-NC-SA 4.0
 <h2>
 1. Installing tensorflow on Windows11
 </h2>
-We use Python 3.8.10 to run tensoflow 2.11.1 on Windows11.<br>
+We use Python 3.8.10 to run tensoflow 2.10.1 on Windows11.<br>
 <h3>1.1 Install Microsoft Visual Studio Community</h3>
 Please install <a href="https://visualstudio.microsoft.com/ja/vs/community/">Microsoft Visual Studio Community</a>, 
 which can be ITed to compile source code of 
@@ -89,7 +89,7 @@ Please clone Image-Segmentation-Multiple-Myeloma.git in the working folder <b>c:
 <pre>
 >git clone https://github.com/sarah-antillia/Image-Segmentation-Multiple-Myeloma.git<br>
 </pre>
-You can see the following folder <b>projects</b> in Image-Segmentation-Multiple-Myeloma of the working folder.<br>
+You can see the following folder structure in Image-Segmentation-Multiple-Myeloma of the working folder.<br>
 
 <pre>
 Image-Segmentation-Multiple-Myeloma
@@ -137,7 +137,7 @@ TCIA_SegPC_dataset
     └─y
 </pre>
 Each <b>x</b> folder of the dataset contains the ordinary image files of Multiple Myeloma Plasma Cells,
-and <b>y</b> folder contains the mask image file to identify each Cell of the ordinary image files.
+and <b>y</b> folder contains the mask file to identify each Cell of the ordinary image files.
   Both the image size of all files in <b>x</b> and <b>y</b> is 2560x1920, which is apparently too large to use 
 for our TensoflowUNet Model.<br>
 
@@ -149,7 +149,7 @@ Sample masks in train/y:<br>
 For example, an image file <b>train/x/106.bmp</b> in the above picture has some corresponding mask files <b>train/y/106_*.bmp</b>, which contain extremely unreconizable ellipsoidal lightgray mask regions for humans.<br>
  
 <h3>
-2.3.2. Generate MultipleMyelomaImage Dataset
+2.3.2. Generate MultipleMyeloma Image Dataset
 </h3>
  We have created Python script <a href="./MultipleMyelomaImageDatasetGenerator.py">MultipleMyelomaImageDatasetGenerator.py</a> to create images and masks dataset which may be used to train our
  TensorflowUNet model.<br>
@@ -170,7 +170,7 @@ Example:<br>
 
 At first glance, the second strategy seems to be well fitting to the white ellipsoidal regions of mask files, 
 but we will take the first strategy, because that ordinary Tensorflow CNN Convolution and MaxPooling layers will
-receive the rectangular images as their inputs.<br><br>
+take the rectangular images as their inputs.<br><br>
 Of course, there are some other approaches, one of which is to merge mutilple mask files corresponding to one image 
 into one mask file as shown below.<br>
 <table>
