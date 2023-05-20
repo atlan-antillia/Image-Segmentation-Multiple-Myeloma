@@ -31,7 +31,7 @@ import glob
 import numpy as np
 from matplotlib import pyplot as plt
 
-#from tqdm import tqdm
+from tqdm import tqdm
 
 # pip install scikit-image
 from skimage.transform import resize
@@ -46,18 +46,16 @@ class MultipleMyelomaDataset:
     self.IMG_WIDTH, self.IMG_HEIGHT, self.IMG_CHANNELS = resized_image
 
  
-  def create(self, data_path, has_mask=True, debug=False):
-    image_dir = "/images/"
-    mask_dir  = "/masks/"
-    image_files = sorted(glob.glob(data_path + image_dir + "*.jpg"))
-    mask_files  = sorted(glob.glob(data_path + mask_dir + "*.jpg"))
-    #mask_files  = sorted(glob.glob(data_path + mask_dir + "*.jpg"))
+  def create(self, image_data_path, mask_data_path, has_mask=True, debug=False):
+ 
+    image_files = sorted(glob.glob(image_data_path + "/*.jpg"))
+    mask_files  = sorted(glob.glob(mask_data_path  + "/*.jpg"))
   
     num_images  = len(image_files)
     X = np.zeros((num_images, self.IMG_HEIGHT, self.IMG_WIDTH, self.IMG_CHANNELS), dtype=np.uint8)
     Y = np.zeros((num_images, self.IMG_HEIGHT, self.IMG_WIDTH, 1                ), dtype=np.bool)
 
-    for n in range(num_images):
+    for n, image_file in tqdm(enumerate(image_files), total=len(image_files)):
       image_file = image_files[n]
       image = imread(image_file)
       #print("--- image_file {}".format(image_file))
@@ -65,9 +63,7 @@ class MultipleMyelomaDataset:
       X[n]  = image
   
       mask = imread(mask_files[n]) #, as_gray=True)
-      #mask = resize(mask, (self.IMG_HEIGHT, self.IMG_WIDTH, 1), preserve_range=False, anti_aliasing=False) 
-      mask = resize(mask, (self.IMG_HEIGHT, self.IMG_WIDTH, 1), mode='constant', preserve_range=False, anti_aliasing=False) 
-
+      mask = resize(mask, (self.IMG_HEIGHT, self.IMG_WIDTH, 1),  mode='constant', preserve_range=False, anti_aliasing=False) 
                                       
       Y[n] = mask
       if debug:
@@ -82,18 +78,19 @@ if __name__ == "__main__":
   try:
     resized_image = (128, 128, 3)
     
-    train_datapath = "./MultipleMyeloma/train/"
-    test_datapath  = "./MultipleMyeloma/valid/"
+    train_image_datapath = "./MultipleMyeloma/train/images/"
+    train_mask_datapath  = "./MultipleMyeloma/train/masks/"
+    test_image_datapath  = "./MultipleMyeloma/valid/images/"
+    test_mask_datapath   = "./MultipleMyeloma/valid/masks/"
 
     dataset = MultipleMyelomaDataset(resized_image)
-    x_train, y_train = dataset.create(train_datapath, has_mask=True, debug=False)
+    x_train, y_train = dataset.create(train_image_datapath, train_mask_datapath, has_mask=True, debug=False)
     print(" len x_train {}".format(len(x_train)))
     print(" len y_train {}".format(len(y_train)))
 
-    x_test, y_test   = dataset.create(test_datapath, has_mask=True)
+    x_test, y_test   = dataset.create(test_image_datapath, test_mask_datapath, has_mask=True)
     print(" len x_test {}".format(len(x_test)))
     print(" len y_test {}".format(len(y_test)))
-
 
   except:
     traceback.print_exc()

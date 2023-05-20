@@ -48,6 +48,7 @@ import shutil
 import sys
 import glob
 import traceback
+import random
 import numpy as np
 import cv2
 import tensorflow as tf
@@ -59,9 +60,10 @@ from tensorflow.keras.layers import Conv2D, Dropout, Conv2D, MaxPool2D
 
 from tensorflow.keras.layers import Conv2DTranspose
 from tensorflow.keras.layers import concatenate
-from tensorflow.keras.activations import elu, relu
+from tensorflow.keras.activations import relu
 from tensorflow.keras import Model
-#from tensorflow.keras.losses import SparseCategoricalCrossentropy
+from tensorflow.keras.losses import  BinaryCrossentropy
+from tensorflow.keras.metrics import BinaryAccuracy
 #from tensorflow.keras.metrics import Mean
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
@@ -73,12 +75,15 @@ from GrayScaleImageWriter import GrayScaleImageWriter
 
 from losses import dice_coef, basnet_hybrid_loss, sensitivity, specificity
 
+"""
+See: https://www.tensorflow.org/api_docs/python/tf/keras/metrics
+Module: tf.keras.metrics
+Functions
+"""
 
-import random
-seed           = 137
-random.seed    = seed
-np.random.seed = seed
-tf.random.set_seed(seed)
+"""
+See also: https://github.com/tensorflow/tensorflow/blob/master/tensorflow/python/keras/engine/training.py
+"""
 
 MODEL  = "model"
 TRAIN  = "train"
@@ -87,12 +92,12 @@ BEST_MODEL_FILE = "best_model.h5"
 class TensorflowUNet:
 
   def __init__(self, config_file):
+    self.set_seed()
+
     self.config    = ConfigParser(config_file)
     image_height   = self.config.get(MODEL, "image_height")
-
     image_width    = self.config.get(MODEL, "image_width")
     image_channels = self.config.get(MODEL, "image_channels")
-
     num_classes    = self.config.get(MODEL, "num_classes")
     base_filters   = self.config.get(MODEL, "base_filters")
     num_layers     = self.config.get(MODEL, "num_layers")
@@ -108,18 +113,27 @@ class TensorflowUNet:
     
     self.model_loaded = False
 
-    #
-    # 
-    self.loss    = "binary_crossentropy"
-    self.metrics = ["accuracy"]
-    try:
-      dice_loss  = self.config.get(MODEL, "dice_loss")
-      if dice_loss:
-        self.loss    = basnet_hybrid_loss
-        self.metrics = [dice_coef, sensitivity, specificity]
-        #self.metrics = [dice_coef]
-    except:
-      pass
+    # 2023/05/20 Modified to read loss and metrics from train_eval_infer.config file.
+    binary_crossentropy = tf.keras.metrics.binary_crossentropy
+    binary_accuracy     = tf.keras.metrics.binary_accuracy
+
+    # Default loss and metrics functions
+    self.loss    = binary_crossentropy
+    self.metrics = [binary_accuracy]
+    
+    # Read a loss function name from our config file, and eval it.
+    # loss = "binary_crossentropy"
+    self.loss  = eval(self.config.get(MODEL, "loss"))
+
+    # Read a list of metrics function names, ant eval each of the list,
+    # metrics = ["binary_accuracy"]
+    metrics  = self.config.get(MODEL, "metrics")
+    self.metrics = []
+    for metric in metrics:
+      self.metrics.append(eval(metric))
+    
+    print("--- loss    {}".format(self.loss))
+    print("--- metrics {}".format(self.metrics))
     
     self.model.compile(optimizer = self.optimizer, loss= self.loss, metrics = self.metrics)
    
@@ -127,12 +141,18 @@ class TensorflowUNet:
     if show_summary:
       self.model.summary()
 
+  def set_seed(self, seed=137):
+    print("=== set seed {}".format(seed))
+    random.seed    = seed
+    np.random.seed = seed
+    tf.random.set_seed(seed)
+
   def create(self, num_classes, image_height, image_width, image_channels,
             base_filters = 16, num_layers = 5):
     # inputs
     print("Input image_height {} image_width {} image_channels {}".format(image_height, image_width, image_channels))
     inputs = Input((image_height, image_width, image_channels))
-    s= Lambda(lambda x: x / 255)(inputs)
+    s = Lambda(lambda x: x / 255)(inputs)
 
     # Encoder
     dropout_rate = self.config.get(MODEL, "dropout_rate")
@@ -248,7 +268,6 @@ class TensorflowUNet:
       # Probably, this is a natural way for all humans. 
       writer.save_resized(image, (w, h), output_dir, name)
 
-     
 
   def predict(self, images, expand=True):
     self.load_model()
@@ -272,6 +291,7 @@ class TensorflowUNet:
 if __name__ == "__main__":
 
   try:
+    # Default config_file
     config_file    = "./train_eval_infer.config"
     # You can specify config_file on your command line parammeter.
     if len(sys.argv) == 2:

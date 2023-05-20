@@ -36,6 +36,7 @@ from MultipleMyelomaDataset import MultipleMyelomaDataset
 
 from TensorflowUNet import TensorflowUNet
 
+
 MODEL  = "model"
 TRAIN  = "train"
 
@@ -64,10 +65,10 @@ if __name__ == "__main__":
     resized_image    = (height, width, channels)
     dataset          = MultipleMyelomaDataset(resized_image)
 
-    original_data_path  = config.get(TRAIN, "image_datapath")
-    #segmented_data_path = config.get(TRAIN, "mask_datapath")
+    image_data_path  = config.get(TRAIN, "image_datapath")
+    mask_data_path = config.get(TRAIN, "mask_datapath")
 
-    x_train, y_train = dataset.create(original_data_path, has_mask=True)
+    x_train, y_train = dataset.create(image_data_path, mask_data_path)
     print(" len x_train {}".format(len(x_train)))
     print(" len y_train {}".format(len(y_train)))
 

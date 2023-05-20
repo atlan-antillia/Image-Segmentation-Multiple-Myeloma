@@ -1,5 +1,5 @@
 <h2>
-Image-Segmentation-Multiple-Myeloma (Updated: 2023/05/18)
+Image-Segmentation-Multiple-Myeloma (Updated: 2023/05/21)
 </h2>
 This is an experimental project to detect <b>Multiple-Myeloma</b> based on 
 Microscopic Images of Multiple-Myeloma (TCIA_SegPC_dataset), by using 
@@ -45,6 +45,10 @@ If you use this dataset, please cite below publications-
 License
 CC BY-NC-SA 4.0
 </pre>
+
+<li>
+2023/05/21: Modified to read and eval <b>loss</b> and <b>metrics</b> functions from a configuration file. 
+</li>
 
 <h2>
 1. Installing tensorflow on Windows11
@@ -249,8 +253,14 @@ This python script above will read the following configration file, build Tensor
 start training the model by using 
 <pre>
 ; train_eval_infer.config
-; 2023/5/11 antillia.com
-; Added dice_loss
+; 2023/5/20 antillia.com
+; Modified to use loss and metric
+; Specify loss as a function nams
+; loss =  "binary_crossentropy"
+; Specify metrics as a list of function name
+; metrics = ["binary_accuracy"]
+; Please see: https://www.tensorflow.org/api_docs/python/tf/keras/Model?version=stable#compile
+
 [model]
 image_width    = 256
 image_height   = 256
@@ -260,49 +270,72 @@ base_filters   = 16
 num_layers     = 6
 dropout_rate   = 0.08
 learning_rate  = 0.001
-dice_loss      = False
-show_summary   = True
+
+loss           = "binary_crossentropy"
+metrics        = ["binary_accuracy"]
+show_summary   = False
 
 [train]
 epochs        = 100
 batch_size    = 4
 patience      = 10
-metrics       = ["accuracy", "val_accuracy"]
+metrics       = ["binary_accuracy", "val_binary_accuracy"]
+
 model_dir     = "./models"
 eval_dir      = "./eval"
-image_datapath = "./MultipleMyeloma/train/"
+
+image_datapath = "./MultipleMyeloma/train/images/"
+mask_datapath  = "./MultipleMyeloma/train/masks/"
 
 [eval]
-image_datapath = "./MultipleMyeloma/valid/"
+image_datapath = "./MultipleMyeloma/valid/images/"
+mask_datapath  = "./MultipleMyeloma/valid/masks/"
 
 [infer] 
 images_dir    = "./mini_test" 
 output_dir    = "./mini_test_output"
-
 </pre>
 
-Since <b>dice_loss</b> is set to be <b>False</b> in <b>train_eval_infer.config</b> file,
-<b>binary_crossentropy</b> is used as a loss function to compile our model as shown below.
+Since <pre>loss = "binary_crossentropy"</pre> and <pre>metrics = ["binary_accuracy"] </pre> are specified 
+in <b>train_eval_infer.config</b> file,
+<b>binary_crossentropy</b> and <b>binary_accuracy</b> functions are used to compile our model as shown below.
 <pre>
-  self.loss    = "binary_crossentropy"
-  self.metrics = ["accuracy"]
-  self.model.compile(optimizer = self.optimizer, loss= self.loss, metrics = self.metrics)
+    # Read a loss function name from a config file, and eval it.
+    # loss = "binary_crossentropy"
+    self.loss  = eval(self.config.get(MODEL, "loss"))
+
+    # Read a list of metrics function names from a config file, and eval each of the list,
+    # metrics = ["binary_accuracy"]
+    metrics  = self.config.get(MODEL, "metrics")
+    self.metrics = []
+    for metric in metrics:
+      self.metrics.append(eval(metric))
+        
+    self.model.compile(optimizer = self.optimizer, loss= self.loss, metrics = self.metrics)
 </pre>
+You can also specify other loss and metrics functions in the config file.<br>
+Example: basnet_hybrid_loss(https://arxiv.org/pdf/2101.04704.pdf)<br>
+<pre>
+loss         = "basnet_hybrid_loss"
+metrics      = ["dice_coef", "sensitivity", "specificity"]
+</pre>
+On detail of these functions, please refer to <a href="./losses.py">losses.py</a><br>, and 
+<a href="https://github.com/shruti-jadon/Semantic-Segmentation-Loss-Functions/tree/master">Semantic-Segmentation-Loss-Functions (SemSegLoss)</a>.
 
 We have also used Python <a href="./MultipleMyelomaDataset.py">MultipleMyelomaDataset.py</a> script to create
 train and test dataset from the images and masks specified by
 <b>image_datapath</b> and <b>mask_datapath </b> parameters in the configratration file.<br>
 The training process has just been stopped at epoch 30 by an early-stopping callback as shown below.<br><br>
-<img src="./asset/train_console_at_epoch_40_0518.png" width="720" height="auto"><br>
+<img src="./asset/train_console_at_epoch_29_0521.png" width="720" height="auto"><br>
 <br>
 The <b>val_accuracy</b> is very high as shown below from the beginning of the training.<br>
 <b>Train accuracies line graph</b>:<br>
-<img src="./asset/train_accuracies_40.png" width="720" height="auto"><br>
+<img src="./asset/train_binary_accuracies_29.png" width="720" height="auto"><br>
 
 <br>
 The val_loss is also very low as shown below from the beginning of the training.<br>
 <b>Train losses line graph</b>:<br>
-<img src="./asset/train_losses_40.png" width="720" height="auto"><br>
+<img src="./asset/train_losses_29.png" width="720" height="auto"><br>
 
 
 <h2>
@@ -318,7 +351,7 @@ Please run the following bat file.<br>
 >python TensorflowUNetMultipleMyelomaEvaluator.py
 </pre>
 The evaluation result of this time is the following.<br>
-<img src="./asset/evaluate_console_at_epoch_40_0518.png" width="720" height="auto"><br>
+<img src="./asset/evaluate_console_at_epoch_29_0521.png" width="720" height="auto"><br>
 <br>
 
 <h2>
