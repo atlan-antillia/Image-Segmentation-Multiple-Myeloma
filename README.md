@@ -1,5 +1,5 @@
 <h2>
-Image-Segmentation-Multiple-Myeloma (Updated: 2023/05/21)
+Image-Segmentation-Multiple-Myeloma (Updated: 2023/05/27)
 </h2>
 This is an experimental project to detect <b>Multiple-Myeloma</b> based on 
 Microscopic Images of Multiple-Myeloma (TCIA_SegPC_dataset), by using 
@@ -48,6 +48,9 @@ CC BY-NC-SA 4.0
 
 <li>
 2023/05/21: Modified to read and eval <b>loss</b> and <b>metrics</b> functions from a configuration file. 
+</li>
+<li>
+2023/05/27: Updated MultipleMyelomaDataset to improve detection accuracy.
 </li>
 
 <h2>
@@ -326,16 +329,16 @@ We have also used Python <a href="./MultipleMyelomaDataset.py">MultipleMyelomaDa
 train and test dataset from the images and masks specified by
 <b>image_datapath</b> and <b>mask_datapath </b> parameters in the configratration file.<br>
 The training process has just been stopped at epoch 30 by an early-stopping callback as shown below.<br><br>
-<img src="./asset/train_console_at_epoch_29_0521.png" width="720" height="auto"><br>
+<img src="./asset/train_console_at_epoch_20_0527.png" width="720" height="auto"><br>
 <br>
 The <b>val_accuracy</b> is very high as shown below from the beginning of the training.<br>
 <b>Train accuracies line graph</b>:<br>
-<img src="./asset/train_binary_accuracies_29.png" width="720" height="auto"><br>
+<img src="./asset/train_metrics_20.png" width="720" height="auto"><br>
 
 <br>
 The val_loss is also very low as shown below from the beginning of the training.<br>
 <b>Train losses line graph</b>:<br>
-<img src="./asset/train_losses_29.png" width="720" height="auto"><br>
+<img src="./asset/train_losses_20.png" width="720" height="auto"><br>
 
 
 <h2>
@@ -351,7 +354,7 @@ Please run the following bat file.<br>
 >python TensorflowUNetMultipleMyelomaEvaluator.py
 </pre>
 The evaluation result of this time is the following.<br>
-<img src="./asset/evaluate_console_at_epoch_29_0521.png" width="720" height="auto"><br>
+<img src="./asset/evaluate_console_at_epoch_20_0527.png" width="720" height="auto"><br>
 <br>
 
 <h2>

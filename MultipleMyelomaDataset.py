@@ -26,26 +26,21 @@
 
 
 import os
-import sys
-import glob
 import numpy as np
-from matplotlib import pyplot as plt
-
+import cv2
 from tqdm import tqdm
-
-# pip install scikit-image
-from skimage.transform import resize
-#from skimage.morphology import label
+import glob
+from matplotlib import pyplot as plt
 from skimage.io import imread, imshow
-
 import traceback
 
 class MultipleMyelomaDataset:
 
-  def __init__(self, resized_image):
+  def __init__(self, resized_image, threshold=160):
     self.IMG_WIDTH, self.IMG_HEIGHT, self.IMG_CHANNELS = resized_image
+    self.THRESHOLD = threshold
+    self.BLUR_SIZE = (3, 3)
 
- 
   def create(self, image_data_path, mask_data_path, has_mask=True, debug=False):
  
     image_files = sorted(glob.glob(image_data_path + "/*.jpg"))
@@ -54,18 +49,26 @@ class MultipleMyelomaDataset:
     num_images  = len(image_files)
     X = np.zeros((num_images, self.IMG_HEIGHT, self.IMG_WIDTH, self.IMG_CHANNELS), dtype=np.uint8)
     Y = np.zeros((num_images, self.IMG_HEIGHT, self.IMG_WIDTH, 1                ), dtype=np.bool)
-
+    blur_size= (3, 3)
     for n, image_file in tqdm(enumerate(image_files), total=len(image_files)):
-      image_file = image_files[n]
-      image = imread(image_file)
-      #print("--- image_file {}".format(image_file))
-      image = resize(image, (self.IMG_HEIGHT, self.IMG_WIDTH, self.IMG_CHANNELS), mode='constant', preserve_range=True)
-      X[n]  = image
   
-      mask = imread(mask_files[n]) #, as_gray=True)
-      mask = resize(mask, (self.IMG_HEIGHT, self.IMG_WIDTH, 1),  mode='constant', preserve_range=False, anti_aliasing=False) 
-                                      
-      Y[n] = mask
+      image = cv2.imread(image_file, cv2.COLOR_BGR2RGB)
+      image = cv2.resize(image, dsize= (self.IMG_HEIGHT, self.IMG_WIDTH), interpolation=cv2.INTER_NEAREST)
+      X[n]  = image
+
+      mask  = cv2.imread(mask_files[n])
+      mask  = cv2.cvtColor(mask, cv2.COLOR_BGR2GRAY)
+      mask  = cv2.resize(mask, dsize= (self.IMG_HEIGHT, self.IMG_WIDTH),   interpolation=cv2.INTER_NEAREST)
+
+      # Binarize mask
+      mask[mask< self.THRESHOLD] =   0  
+      mask[mask>=self.THRESHOLD] = 255
+      # Blur mask 
+      mask = cv2.blur(mask, self.BLUR_SIZE)
+  
+      mask  = np.expand_dims(mask, axis=-1)
+      Y[n]  = mask
+
       if debug:
           imshow(mask)
           plt.show()
@@ -84,7 +87,7 @@ if __name__ == "__main__":
     test_mask_datapath   = "./MultipleMyeloma/valid/masks/"
 
     dataset = MultipleMyelomaDataset(resized_image)
-    x_train, y_train = dataset.create(train_image_datapath, train_mask_datapath, has_mask=True, debug=False)
+    x_train, y_train = dataset.create(train_image_datapath, train_mask_datapath, has_mask=True, debug=True)
     print(" len x_train {}".format(len(x_train)))
     print(" len y_train {}".format(len(y_train)))
 
