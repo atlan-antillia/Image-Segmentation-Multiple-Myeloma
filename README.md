@@ -50,7 +50,7 @@ CC BY-NC-SA 4.0
 2023/05/21: Modified to read and eval <b>loss</b> and <b>metrics</b> functions from a configuration file. 
 </li>
 <li>
-2023/05/27: Updated MultipleMyelomaDataset to improve detection accuracy.
+2023/05/27: Modified MultipleMyelomaDataset class to bur the mask images.
 </li>
 
 <h2>
@@ -225,6 +225,23 @@ into one mask file as shown below.<br>
 </tr>
 </table>
 <br>
+
+<h3>
+2.3.4. Blur mask images (2023/05/27)
+</h3>
+In <a href="./MultipleMyelomaDataset.py">MultipleMyelomaDataset</a>class, we have tried to create the blurred mask images in the files in <b>masks</b> folder of train and valid.<br>
+By this modification, the boundary of a mask image region will get blurred as shown below.<br>
+
+<table>
+<tr><td>Original mask image</td><td>Blurred mask image</td></tr>
+
+<tr><td><img src="./asset/mask.png" width="256" heigth="auto"><br></td><td><img src="./asset/blurred_mask.png" width="256" heigth="auto"></td></tr>
+</table>
+
+<br>
+ 
+
+
 <h3>
 2.3.3 Generated MultipleMyeloma dataset.<br>
 </h3>
@@ -378,6 +395,42 @@ Some green tumor regions in the original images of the mini_test dataset above h
 <img src="./asset/mini_test_output.png" width="1024" height="auto"><br><br>
 
 <br>
+<b>Detailed images comarison:</b><br>
+<table>
+<tr><td>mini_test/405.bmp</td></tr>
+<tr>
+<td><img src="./mini_test/405.bmp" width="480" height="auto"></td>
+<td><img src="./mini_test_output/405.jpg" width="480" height="auto"></td>
+</tr>
+<tr><td>mini_test/605.bmp</td></tr>
+
+<tr>
+<td><img src="./mini_test/605.bmp" width="480" height="auto"></td>
+<td><img src="./mini_test_output/605.jpg" width="480" height="auto"></td>
+</tr>
+
+<tr><td>mini_test/1735.bmp</td></tr>
+
+<tr>
+<td><img src="./mini_test/1735.bmp" width="480" height="auto"></td>
+<td><img src="./mini_test_output/1735.jpg" width="480" height="auto"></td>
+</tr>
+
+<tr><td>mini_test/1923.bmp</td></tr>
+
+<tr>
+<td><img src="./mini_test/1923.bmp" width="480" height="auto"></td>
+<td><img src="./mini_test_output/1923.jpg" width="480" height="auto"></td>
+</tr>
+
+<tr><td>mini_test/2028.bmp</td></tr>
+
+<tr>
+<td><img src="./mini_test/2028.bmp" width="480" height="auto"></td>
+<td><img src="./mini_test_output/2028.jpg" width="480" height="auto"></td>
+</tr>
+
+</table>
 <!--
 -->
 
